@@ -4,30 +4,24 @@ services:
   web:
     build: .
     container_name: django_app
-    command: ["gunicorn", "--bind", "0.0.0.0:8000", "todoApp.wsgi:application"]
-    volumes:
-      - .:/app
     ports:
       - "8000:8000"
+    volumes:
+      - .:/app
     depends_on:
       - db
     environment:
-      - DATABASE_NAME=todo_db
-      - DATABASE_USER=todo_user
-      - DATABASE_PASSWORD=todo_pass
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=*
 
   db:
-    image: postgres:16
+    image: postgres:latest
     container_name: postgres_db
     restart: always
     environment:
-      POSTGRES_DB: todo_db
-      POSTGRES_USER: todo_user
-      POSTGRES_PASSWORD: todo_pass
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
     volumes:
       - pgdata:/var/lib/postgresql/data
 
