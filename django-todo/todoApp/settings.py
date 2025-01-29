@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'mydatabase',
         'USER': 'myuser',
         'PASSWORD': 'mypassword',
-        'HOST': 'db',  # Container name of the DB service
+        'HOST': 'postgres_db',  # Container name of the DB service
         'PORT': '5432',
     }
 }
